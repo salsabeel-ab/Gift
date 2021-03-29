@@ -1,0 +1,186 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 29 مارس 2021 الساعة 22:17
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `gift`
+--
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `country` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `email`, `password`, `phone`, `country`) VALUES
+(3, 'bushra', 'b@gmail.com', '$2y$10$0q2trRQrWQejBhI8JFWgNObs9Pk9WnK6I4o8RzKuJdZN0xJBkkl.q', 2147483647, 'yemen'),
+(4, 'aisha', 'a@gmail.com', '$2y$10$wxb5D3H7UzcwRe899WRYL.oOFsuBSM5Wy9/EtAsFsoZvTLWIJOuhW', 2147483647, 'yemen'),
+(8, 'salwa', 's@gmail.com', '$2y$10$D2tMP3PX2h3obc86Vlkf.uIRpGwNQvbEdI9bBrvh6HXvcb2P4Yiyy', 777777777, 'yemen'),
+(28, 'aliali', 'ali@gmail.com', '$2y$10$yWO9aAEjfObjwGfdpvYdCufycT4hxdrVeu/PlUwx4pzwPvkaO/dSK', 2147483647, 'yemen'),
+(29, 'rehab', 'R@gmail.com', 'ffffffff', 2147483647, 'yemen'),
+(30, 'aliali2', 'ali@yahoo.com', '$2y$10$F11R0sqS7790EM/GYXuUKeTrtobVr/AIa/ejz/Cu8dIgdjJY77sW2', 2147483647, 'yemen'),
+(33, 'aliali3', 'aaa@hotmail.com', '$2y$10$2nsrc.cXoDB19ypMb3uo.egQ9z3PsaVt8V0DX0ZxSwBZS2hPREYzO', 777777777, 'yemen'),
+(35, 'aliali4', 'ali@hotmail.com', '$2y$10$XwYe1z62oTBBrt4wOo40NO2QlYM/AGVqUvFwSHO7kfz72FFajIKTS', 777777777, 'yemen'),
+(40, 'ssssssssss', 'sssss@gmail.com', '$2y$10$xDvx6LaO7h6cGDDMLTQSeeGV2TtzK4JSWlKO8QK.N2t6G2Y/C/cYG', 777777777, 'us'),
+(41, 'kareem', 'k@gmail.com', '$2y$10$d3oRPaOPvZka8E/dzOd2We6LiqcX1BCX6VZ59gDo4wisiLMSnTxQ6', 777777777, 'yemen'),
+(42, 'abdulkareem', 'abduh@gmail.com', '$2y$10$yD0pmFf3UanajXWOsSKir.xRRodeRuqA4p9ZU0/ttaVMMmMJzPPFO', 777777777, 'Ye');
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `uid` int(11) unsigned NOT NULL,
+  `pid` int(11) unsigned NOT NULL,
+  `qty` int(11) NOT NULL,
+  `shipping` varchar(250) NOT NULL,
+  `total` float(10,2) unsigned NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `uid` (`uid`),
+  KEY `pid` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `orders`
+--
+
+INSERT INTO `orders` (`uid`, `pid`, `qty`, `shipping`, `total`, `date`) VALUES
+(5, 9, 3, 'free', 31.50, '2019-04-01 17:26:32'),
+(5, 6, 4, 'free', 38.36, '2019-04-01 19:02:34'),
+(21, 6, 3, 'free', 28.77, '2019-04-01 21:12:34'),
+(3, 9, 2, 'free', 21.00, '2019-04-03 05:42:23'),
+(3, 8, 9, 'free', 72.00, '2019-04-09 08:16:26'),
+(25, 4, 1, 'free', 11.99, '2020-02-28 09:01:08'),
+(25, 8, 1, 'free', 8.00, '2020-02-28 09:01:08'),
+(28, 2, 1, 'free', 369.99, '2021-01-24 21:09:45'),
+(28, 4, 3, 'free', 35.97, '2021-01-25 06:42:26'),
+(28, 3, 1, 'free', 299.99, '2021-01-25 06:45:49'),
+(33, 9, 2, 'free', 21.00, '2021-03-17 20:17:38'),
+(33, 5, 1, 'free', 15.00, '2021-03-17 20:18:36'),
+(35, 3, 1, 'free', 299.99, '2021-03-29 15:46:09');
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `product`
+--
+
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `disc` varchar(1000) NOT NULL,
+  `list` varchar(1000) DEFAULT NULL,
+  `type` varchar(250) NOT NULL,
+  `price` float(10,2) unsigned NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `disc`, `list`, `type`, `price`, `img`) VALUES
+(1, 'Finish Baby Box', 'The Original Finnish Baby Box is a starter kit to parenthood. It makes life easier for parents-to-be by taking the guesswork out of baby preparation.\n					Also it can be perfect gift for new born babies', '<i class="fa fa-dot-circle-o"></i>    33 essential baby products<br>\n                    <i class="fa fa-dot-circle-o"></i>    From 0 to 12 months<br>\n					<i class="fa fa-dot-circle-o"></i>    Scandinavian design <br>\n					<i class="fa fa-dot-circle-o"></i>    Customized for the baby<br>\n					<i class="fa fa-dot-circle-o"></i>    Features to make life easier<br>', 'Baby stuff', 399.00, 'images/s6.jpg'),
+(2, 'Linen Standerd Crib', 'The painted wood spindles and frame adds a classic look to your child''s nursery. The metal mattress support has 3 adjustable heights so your child can stay in the crib longer as they grow and prevents the mattress from sagging to prolong mattress life. The Crib meets or exceeds the CPSIA Juvenile testing requirements to ensure your child''s safety. ', '<i class="fa fa-dot-circle-o"></i>    warranty covers one (1) year from the date of sale.<br>\n                    <i class="fa fa-dot-circle-o"></i>    The Linden Crib ships flat to your door and requires assembly.<br>\n					<i class="fa fa-dot-circle-o"></i>    Crib fits most standard sized crib mattresses (sold separately). <br>', 'Baby stuff', 369.99, 'images/s4.jpg'),
+(3, 'Mini Sport Travel System - Carbon', 'Small Design. Big Convenience. Thoughtful design offers a smooth ride with swivel wheels and secure parking with toe-tap brakes. A padded handle and parent tray with two cup holders put comfort and convenience at your fingertips.\n					Removable head and body support accommodates newborns as small as 4 pounds, and a five-point harness with one-pull tightening helps keep growing babies secure up to 22 lbs.', '<i class="fa fa-dot-circle-o"></i>    Car seat clicks easily into stroller with included adapter<br>\n                    <i class="fa fa-dot-circle-o"></i>    Large storage basket for on-the-go essentials<br>', 'Baby stuff', 299.99, 'images/s1.jpg'),
+(4, 'Heart Zip-Up Fleece Hoodie', 'Fleece lined with cute hearts on the sleeves, this zip-up hoodie is a school year favorite!', '<i class="fa fa-dot-circle-o"></i>    Zip-front design<br>\n                    <i class="fa fa-dot-circle-o"></i>    Ribbed cuffs and hem<br>\n					<i class="fa fa-dot-circle-o"></i>    Heart print on sleeves <br>\n					<i class="fa fa-dot-circle-o"></i>    Front pockets<br>\n					<i class="fa fa-dot-circle-o"></i>    Pairs with matching joggers<br>\n                    <i class="fa fa-dot-circle-o"></i>    80% cotton, 20% polyester lightweight sueded fleece<br>\n					<i class="fa fa-dot-circle-o"></i>    Machine washable<br>', 'Clothes', 11.99, 'images/c5.jpg'),
+(5, '3-Piece Little Character Set', 'Featuring a sweet elephant embroidery on the bottom and two coordinating bodysuits, this babysoft cotton set lets her mix\n					 and match with essential pants.', '<i class="fa fa-dot-circle-o"></i>    Expandable shoulders for easy over the head<br>\n                    <i class="fa fa-dot-circle-o"></i>    Nickel-free snaps on reinforced panels<br>\n					<i class="fa fa-dot-circle-o"></i>    Covered elastic waistband for a comfy fit <br>\n					<i class="fa fa-dot-circle-o"></i>    100% cotton rib<br>\n					<i class="fa fa-dot-circle-o"></i>    Machine washable<br>', 'Clothes', 15.00, 'images/c3.jpg'),
+(6, 'Toddler Girl 2-Piece Jegging Set', 'Featuring ruffles at the yoke and long sleeves, this space top looks out-of-this-world with coordinating jeggings!', ' <i class="fa fa-dot-circle-o"></i>    Long sleeves<br>\n                    <i class="fa fa-dot-circle-o"></i>    Allover space graphics<br>\n					<i class="fa fa-dot-circle-o"></i>    No-pinch elastic waistband <br>\n					<i class="fa fa-dot-circle-o"></i>    Pre-washed for softness<br>\n					<i class="fa fa-dot-circle-o"></i>    Top: 100% cotton drapey poplin<br>\n                    <i class="fa fa-dot-circle-o"></i>    Jeggings: 72% cotton, 26% polyester, 2% elastane<br>\n					<i class="fa fa-dot-circle-o"></i>    Machine washable<br>', 'Clothes', 9.59, 'images/c7.jpg'),
+(7, 'Baby Wooden Car Carrier', 'With 4 easy-to-hold wooden cars and a wooden car carrier, this block set helps your little one improve hand-eye coordination.', '<i class="fa fa-dot-circle-o"></i>    Recommended ages: 2+<br>\n                    <i class="fa fa-dot-circle-o"></i>    100% man-made materials<br>\n					<i class="fa fa-dot-circle-o"></i>    Wipe clean with a damp cloth <br>', 'Toys', 14.00, 'images/j2.jpg'),
+(8, 'Baby Girl Owl Plush', 'The perfect gift, this owl plush is 10" tall and crafted in super soft faux fur.', '<li>Super soft boa faux fur</li>\n					<li>10" tall</li>\n					<li>Bean bag filling</li>\n					<li>Shell: 100% polyester boa</li>\n					<li>Lining: 100% polyester fibers</li>\n					<li>Wipe clean</li>', 'Toys', 8.00, 'images/j6.jpg'),
+(9, 'Counting Wood Puzzle', 'Help baby learn numbers while teaching him important motor skills with his favorite characters on this wood puzzle!', '<i class="fa fa-dot-circle-o"></i>    Recommended ages: 2+<br>\n                    <i class="fa fa-dot-circle-o"></i>    9 removable wood pieces<br>\n					<i class="fa fa-dot-circle-o"></i>    100% wood <br>\n					<i class="fa fa-dot-circle-o"></i>    Wipe clean<br>', 'Toys', 10.50, 'images/j7.jpg'),
+(10, 'Sterilizes & Accessories', '', NULL, 'Baby stuff', 120.99, 'images/s3.jpg'),
+(12, 'Baby $ Toddler Cubs', '', NULL, 'Baby stuff', 99.00, 'images/s2.jpg'),
+(13, 'Convertible Crib and Changer\r\n', '', NULL, 'Baby stuff', 319.99, 'images/s5.jpg'),
+(14, '2-Piece Top & Floral Legging Set', '', NULL, 'Clothes', 11.19, 'images/c6.jpg'),
+(15, 'Toddler Girl 2-Pack Tropical Sheep', '', NULL, 'Clothes', 17.00, 'images/c1.jpg'),
+(16, '3-Piece Little Cardigan Set', '', NULL, 'Clothes', 9.59, 'images/c2.jpg'),
+(17, 'Baby Girl Skip Hop Vibrant Village', '', NULL, 'Toys', 15.00, 'images/j1.jpg'),
+(18, 'Baby Girl Wooden Cake Set', '', NULL, 'Toys', 26.25, 'images/j4.jpg'),
+(19, 'Baby Girl Mermaid Plush', '', NULL, 'Toys', 12.00, 'images/j8.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(250) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `creditcard` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `name`, `password`, `creditcard`) VALUES
+(3, 'salsa@gmail.com', 'salsa', '$2y$10$JJpN0jvTQXqmj15rq0H81eV6T7.aFzhSR/OBrqqhxxHrtNj125yAu', 170087),
+(5, 'rose@gmail.com', 'rosse', '$2y$10$o3/ziKuO1PR8Fthc5UkvvOfkIHKUs9TuW0H4iMZPdbwtksl77OINu', 170080),
+(7, 'rawan@gmail.com', 'rawan', '$2y$10$8K6XTswk9mv6zsKVWiwOmutvIHbGim4kFC/IxP8KGBQZKJAm9Zi/e', 170088),
+(9, 'abdulkareem@gmail.com', 'abdulkareem', '$2y$10$PGl0e4H6Mmv6voLoRa8mPOqbOonMgni2BsiK2VHXvzcHu80tKTkEq', 170081),
+(17, 's@gmail.com', 'sbeelo', '$2y$10$IPtSa.nAxlD2dqGwMHuSY.VznrJa1E2LLvRJEINu7snxXytH7arxK', 170078),
+(18, 'hallo@gmail.com', 'hallah', '$2y$10$xdIX8fg9ur0s2V1qqXGb3e8JtnG8KfY1Nk1PN7ok9ACZWqa.1zfci', 170000),
+(20, 'a@gmail.com', 'aaaaa', '$2y$10$Kczh9g0PiscWVZ5v6uS9J.VtyMn.VvgPQTA8B5czE05UapgvPU.Oq', 123456),
+(21, 'amarkhiari222@gmail.com', 'amar2', '$2y$10$IuCL9P.lk91LAyfkNLzNPe1Cb9MIZuvYn39xYJt2sQ6dOeO4rSxFS', 2147483647),
+(25, 'salsabeel@gmail.com', 'salsabeel', '$2y$10$1JLeHg5/6at.wE127zG3EOYl4dEGekvvnRZF5im3DPN0mp8Ku14fe', 170087),
+(28, 'salsabel@gmail.com', 'salsabel', '$2y$10$yeslS3g20BoIIy2cMik7R.JaFg.5zcKgD3wUe.WTS8MUgffVTFK.y', 170087),
+(33, 'abc@gmail.com', 'abcdefgh', '$2y$10$HENmntlu85pfvjrsBVClau2wyCmj2AsWQB87oTruJtU.4JOFU1AaG', 0),
+(34, 'abcdf@gmail.com', 'asdfgh', '$2y$10$VnnQU4OTZ59WQ7AhM/nOCesarcx271rCFGzCVhUz2n/ZqgUkGD6om', 0),
+(35, 'salsabeel1997@gmail.com', 'salsabeel7', '$2y$10$.mVql0pHanHt9WaXiynBTOHtV0d7AfjXkGDI3rI5wx7npQMBNwmum', 170087),
+(36, 'abdu@gmail.com', 'abdullah', '$2y$10$S/XgpBJeYdyX/DZFwud8oOKPF5LILuJpPt2QC6NC.lveHRl3Yl98K', 170104),
+(44, 'aaa@gmail.com', 'abdulkarim', '$2y$10$DeUtAX/M2GBuvYCeZDbsh.JN8r82gjwjhfYhDcAxZNwKuGG/tXgLi', 0);
+
+--
+-- قيود الجداول المحفوظة
+--
+
+--
+-- القيود للجدول `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
